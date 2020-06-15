@@ -123,6 +123,46 @@
           }
         }
       }
+    },
+    "ngx-startkit": {
+      "projectType": "library",
+      "root": "projects/ngx-startkit",
+      "sourceRoot": "projects/ngx-startkit/src",
+      "prefix": "ng",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-startkit/tsconfig.lib.json",
+            "project": "projects/ngx-startkit/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-startkit/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-startkit/src/test.ts",
+            "tsConfig": "projects/ngx-startkit/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-startkit/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-startkit/tsconfig.lib.json",
+              "projects/ngx-startkit/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ng-start-kit"
 }
