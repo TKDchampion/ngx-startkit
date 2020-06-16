@@ -12,6 +12,7 @@
       "element",
       "ng",
       "kebab-case"
-    ]
+    ],
+    "forin": false
   }
 }

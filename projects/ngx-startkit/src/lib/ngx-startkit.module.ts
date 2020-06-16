@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NgxStartkitComponent } from './ngx-startkit.component';
 import { StorageService } from './services/storage.service';
+import { BaseService } from './services/base.service';
 
 
 
@@ -9,6 +10,9 @@ import { StorageService } from './services/storage.service';
   imports: [
   ],
   exports: [NgxStartkitComponent],
-  providers: [StorageService]
+  providers: [
+    StorageService,
+    BaseService
+  ]
 })
 export class NgxStartkitModule { }
