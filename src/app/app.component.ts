@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Storage } from 'ngx-startkit';
+import { StorageService } from 'ngx-startkit';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,6 @@ import { Storage } from 'ngx-startkit';
 export class AppComponent {
   title = 'ng-start-kit';
   constructor(
-    private storage: Storage
+    private storage: StorageService
     ) {  }
 }
