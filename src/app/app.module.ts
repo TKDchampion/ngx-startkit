@@ -3,7 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxStartkitModule } from 'ngx-startkit';
+import { NgxStartkitModule, HttpDefaultOptions, JWTOptions } from 'ngx-startkit';
+import { environment } from 'src/environments/environment';
+
+export class AuditHttpDefaultOptions extends HttpDefaultOptions {
+  baseApiURL = environment.baseApiUrl; // input api base url.
+}
+
+export class AuditJWTOptions extends JWTOptions {
+  key = 'user';
+}
 
 @NgModule({
   declarations: [
@@ -14,7 +23,14 @@ import { NgxStartkitModule } from 'ngx-startkit';
     AppRoutingModule,
     NgxStartkitModule
   ],
-  providers: [],
+  providers: [{
+    provide: HttpDefaultOptions,
+    useClass: AuditHttpDefaultOptions
+  },
+  {
+    provide: JWTOptions,
+    useClass: AuditJWTOptions
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

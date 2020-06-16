@@ -18,7 +18,7 @@ export class StorageService {
     }
   }
 
-  setItem(key: string, data: string) {
+  setItem(key: string, data: any) {
     if (this.useLocalStorage) {
       localStorage.setItem(key, data);
     } else {
