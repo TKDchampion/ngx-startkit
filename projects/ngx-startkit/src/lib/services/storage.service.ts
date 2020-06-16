@@ -10,7 +10,7 @@ export class StorageService {
     this.useLocalStorage = this.storageAvailable();
   }
 
-  getItem(key: string): string | null {
+  getItem(key: string) {
     if (this.useLocalStorage) {
       return localStorage.getItem(key);
     } else {

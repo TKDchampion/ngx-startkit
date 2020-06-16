@@ -7,28 +7,28 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseService {
+export abstract class BaseService {
 
   constructor(private http: HttpClient, private options: HttpDefaultOptions) {
   }
 
-  get<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected get<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options) => this.http.get(fullURL, options));
   }
 
-  post<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected post<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options, body) => this.http.post(fullURL, body, options));
   }
 
-  put<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected put<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options, body) => this.http.put(fullURL, body, options));
   }
 
-  delete<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected delete<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options) => this.http.delete(fullURL, options));
   }
 
-  toURLParams(obj: object) {
+  protected toURLParams(obj: object) {
     let params = new HttpParams();
     for (const key in obj) {
       params = params.set(key, obj[key].toString());
@@ -36,7 +36,7 @@ export class BaseService {
     return params;
   }
 
-  setHeaders(headers: object): HttpHeaders {
+  protected setHeaders(headers: object): HttpHeaders {
     let httpHeaders = new HttpHeaders();
     headers = Object.assign(headers || {}, this.options.headers);
     for (const key in headers) {
