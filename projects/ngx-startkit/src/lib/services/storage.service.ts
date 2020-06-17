@@ -10,19 +10,19 @@ export class StorageService {
     this.useLocalStorage = this.storageAvailable();
   }
 
-  getItem(key: string) {
+  get(key: string) {
     if (this.useLocalStorage) {
-      return localStorage.getItem(key);
+      return JSON.parse(localStorage.getItem(key));
     } else {
       return this.memoryStore.hasOwnProperty(key) ? this.memoryStore[key] : null;
     }
   }
 
-  setItem(key: string, data: any) {
+  set(key: string, obj): void {
     if (this.useLocalStorage) {
-      localStorage.setItem(key, data);
+      localStorage.setItem(key, JSON.stringify(obj));
     } else {
-      this.memoryStore[key] = data.toString();
+      this.memoryStore[key] = JSON.stringify(obj);
     }
   }
 

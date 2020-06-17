@@ -13,7 +13,7 @@ export class JWTInterceptor implements HttpInterceptor {
   constructor(private storage: StorageService, private options: JWTOptions) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const auth: AuthToken = this.storage.getItem(this.options.key) || {};
+    const auth: AuthToken = this.storage.get(this.options.key) || {};
     if (auth) {
       req = req.clone({ setHeaders: { Authorization: `Bearer ${auth.access_token}` } });
     }

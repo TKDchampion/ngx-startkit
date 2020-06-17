@@ -18,8 +18,10 @@ export class AppComponent {
       userName: 'user11',
       password: 'a123456'
     };
-    this.appservice.login(obj).subscribe(resp => {
-      this.storage.setItem(this.option.key, resp);
+    this.appservice.login(obj).subscribe((resp: any) => {
+      this.storage.set(this.option.key, resp);
+      this.storage.set('test', true);
+      this.storage.set('test2', 123);
     });
   }
 }
