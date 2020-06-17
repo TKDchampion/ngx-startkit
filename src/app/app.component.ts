@@ -20,9 +20,7 @@ export class AppComponent {
     };
     this.appservice.login(obj).subscribe((resp: any) => {
       this.storage.set(this.option.key, resp);
-      this.storage.set('test', true);
-      this.storage.clear();
-      this.storage.set('test2', 123, 'sessionStorage');
+      this.appservice.getMenu().subscribe(i => { });
     });
   }
 }

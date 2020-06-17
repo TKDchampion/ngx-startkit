@@ -16,4 +16,8 @@ export class AppService extends BaseService {
       body: obj,
     });
   }
+
+  getMenu(){
+    return this.get('/Menu');
+  }
 }

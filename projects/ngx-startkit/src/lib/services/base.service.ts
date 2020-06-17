@@ -13,19 +13,19 @@ export abstract class BaseService {
   constructor(private http: HttpClient, private options: HttpDefaultOptions) {
   }
 
-  protected get<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected get<T>(url: string, httpOptions?: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options) => this.http.get(fullURL, options));
   }
 
-  protected post<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected post<T>(url: string, httpOptions?: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options, body) => this.http.post(fullURL, body, options));
   }
 
-  protected put<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected put<T>(url: string, httpOptions?: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options, body) => this.http.put(fullURL, body, options));
   }
 
-  protected delete<T>(url: string, httpOptions: HttpRequestOptions): Observable<T> {
+  protected delete<T>(url: string, httpOptions?: HttpRequestOptions): Observable<T> {
     return this.httpProcess(url, httpOptions, (fullURL, options) => this.http.delete(fullURL, options));
   }
 
