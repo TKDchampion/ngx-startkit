@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { HttpRequestOptions, HttpDefaultOptions } from '../model/options';
 import { Observable } from 'rxjs';
+import '../extensions/string.extensions';
 
 
 @Injectable({
@@ -45,7 +46,7 @@ export abstract class BaseService {
     return httpHeaders;
   }
 
-  private httpProcess(url, httpOptions: HttpRequestOptions = {}, httpFunc) {
+  private httpProcess(url: string, httpOptions: HttpRequestOptions = {}, httpFunc) {
     const fullURL = url.toURL(httpOptions.baseURL || this.options.baseApiURL);
     const body = httpOptions.body;
     const params = this.toURLParams(httpOptions.queryObject);

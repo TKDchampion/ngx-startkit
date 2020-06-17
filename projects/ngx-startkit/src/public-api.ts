@@ -10,6 +10,8 @@ export * from './lib/services/base.service';
 export * from './lib/model/options';
 export * from './lib/model/token';
 export * from './lib/interceptor/jwt-interceptor';
+export * from './lib/extensions/string.extensions';
+
 
 
 
