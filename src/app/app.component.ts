@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StorageService, JWTOptions, GlobalService } from 'ngx-startkit';
+import { StorageService, JWTOptions, GlobalStateService, GlobalService } from 'ngx-startkit';
 import { AppService } from './app.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class AppComponent {
     private storage: StorageService,
     private appservice: AppService,
     private option: JWTOptions,
-    private state: GlobalService
+    private state: GlobalStateService,
+    private global: GlobalService
   ) {
     const obj = {
       userName: 'user11',
@@ -22,6 +23,9 @@ export class AppComponent {
     this.appservice.login(obj).subscribe((resp: any) => {
       this.storage.set(this.option.key, resp);
       this.appservice.getMenu().subscribe(i => { });
+      this.global.set(123);
+      console.log(this.global.get());
+
     });
   }
 }

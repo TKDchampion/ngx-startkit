@@ -4,7 +4,6 @@ import { JWTOptions } from '../model/options';
 import { StorageService } from '../services/storage.service';
 import { Injectable } from '@angular/core';
 import { AuthToken } from '../model/token';
-import { GlobalService } from '../services/global.service';
 
 @Injectable({
   providedIn: 'root'
