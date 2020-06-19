@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BaseService, HttpDefaultOptions, HttpRequestOptions } from 'ngx-startkit';
+import { BaseService, HttpDefaultOptions } from 'ngx-startkit';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 

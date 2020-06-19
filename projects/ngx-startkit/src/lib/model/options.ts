@@ -8,6 +8,11 @@ export class HttpDefaultOptions {
 export class JWTOptions {
   key: string;
 }
+export declare class LoggerOptions {
+  enableServerLog?: boolean;
+  serverURL?: string;
+  disableConsoleLog?: boolean;
+}
 export interface HttpRequestOptions {
   headers?: object;
   queryObject?: object;

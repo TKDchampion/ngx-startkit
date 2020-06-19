@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StorageService, JWTOptions } from 'ngx-startkit';
+import { StorageService, JWTOptions, GlobalService } from 'ngx-startkit';
 import { AppService } from './app.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class AppComponent {
     private storage: StorageService,
     private appservice: AppService,
     private option: JWTOptions,
+    private state: GlobalService
   ) {
     const obj = {
       userName: 'user11',
