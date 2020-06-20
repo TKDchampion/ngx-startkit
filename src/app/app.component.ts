@@ -18,7 +18,7 @@ export class AppComponent {
   ) {
     const obj = {
       userName: 'user11',
-      password: 'a123456'
+      password: 'a1234566'
     };
     this.appservice.login(obj).subscribe((resp: any) => {
       this.storage.set(this.option.key, resp);

@@ -163,6 +163,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-start-kit"
+    }
+  },
+  "defaultProject": "ng-start-kit",
+  "cli": {
+    "analytics": "555a88eb-0a1f-4e88-a706-0d646ec9b447"
+  }
 }

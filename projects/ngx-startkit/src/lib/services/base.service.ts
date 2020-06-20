@@ -18,7 +18,8 @@ export abstract class BaseService {
   }
 
   protected post<T>(url: string, httpOptions?: HttpRequestOptions): Observable<T> {
-    return this.httpProcess(url, httpOptions, (fullURL, options, body) => this.http.post(fullURL, body, options));
+    return this.httpProcess(url, httpOptions, (fullURL, options, body) =>
+      this.http.post(fullURL, body, options));
   }
 
   protected put<T>(url: string, httpOptions?: HttpRequestOptions): Observable<T> {

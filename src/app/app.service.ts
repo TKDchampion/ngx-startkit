@@ -17,7 +17,8 @@ export class AppService extends BaseService {
     });
   }
 
-  getMenu(){
+  getMenu() {
     return this.get('/Menu');
   }
+
 }
