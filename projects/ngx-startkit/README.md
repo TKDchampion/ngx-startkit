@@ -1,24 +1,114 @@
-# NgxStartkit
+# ngx-startkit
+目前為0.0.4 持續更新中...
+###### tags: `learn`
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.11.
+## Install
+``` js
+npm install ngx-startkit --save
+```
 
-## Code scaffolding
+## Import
+``` js
+import { NgxStartkitModule } from 'ngx-startkit';
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    NgxStartkitModule
+  ])
+export class AppModule { }
+```
 
-Run `ng generate component component-name --project ngx-startkit` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-startkit`.
-> Note: Don't forget to add `--project ngx-startkit` or else it will be added to the default project in your `angular.json` file. 
+## Setting
+- HttpDefaultOptions
+    - baseApiURL(string): 預設的網域
+    - headers(object): 預設的headers
+- HttpRquestOptions
+    - baseURL(string): 覆蓋預設的baseApiURL
+    - headers(object): 會合併預設載入的headers
+    - queryObject(object): query string的物件型態
+    - body(object): body
+- JWTOptions
+    - key: 設定要讀取token在localstorage的key是為何
 
-## Build
+``` js
+export class AppHttpDefaultOptions extends HttpDefaultOptions {
+  baseApiURL = 'https://XXX-api.com/';
+  headers = {
+    ['api-version']: '0.1'
+  };
+}
 
-Run `ng build ngx-startkit` to build the project. The build artifacts will be stored in the `dist/` directory.
+export class AppJWTOptions extends JWTOptions {
+  key = 'taken';
+}
+ 
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxParisModule
+  ],
+  providers: [{
+    provide: HttpDefaultOptions,
+    useClass: AppHttpDefaultOptions
+  }],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Publishing
-
-After building your library with `ng build ngx-startkit`, go to the dist folder `cd dist/ngx-startkit` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngx-startkit` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Service
+- StorageService
+    ``` js
+    import { StorageService } from 'ngx-startkit';
+    @Component({ selector: 'app-root', templateUrl: './app.component.html' })
+    export class AppComponent implements OnInit {
+    constructor(private stotage: StorageService) {}
+        ngOnInit(): void {
+            // type = 'localStorage' || 'sessionStorage'
+            // type 預設 'localStorage'
+            this.storage.get('key', type); // 讀取typ
+            this.storage.set('key', obj, type); // 存放type
+            this.storage.removeItem('key', type) // 清除type單一項目
+            this.stotage.clear(type); // 清除type所有內容
+        }
+    }
+    ```
+    
+- GlobalStateService
+    ``` js
+    import { GlobalStateService } from 'ngx-startkit';
+    @Component({ selector: 'app-root', templateUrl: './app.component.html' })
+    export class AppComponent implements OnInit {
+    constructor(private state: GlobalStateService) {}
+        ngOnInit(): void {
+            // 訂閱模式
+            this.state.notifyDataChanged('key', value); //訂閱
+            this.state.subscribe('key', () => {}); //訂閱者
+            this.state.unsubscribe('key'); //取消訂閱
+        }
+    }
+    ```
+ 
+- GlobalService
+    ``` js
+    import { GlobalService } from 'ngx-startkit';
+    @Component({ selector: 'app-root', templateUrl: './app.component.html' })
+    export class AppComponent implements OnInit {
+    constructor(private global: GlobalService) {}
+        ngOnInit(): void {
+            // 此全域變數僅限不切換router的情況下
+            this.global.set(value); //存放全域變數
+            this.global.get() //讀取全域變數
+        }
+    }
+    ```
+    
+## String擴充方法
+* toInt(radix?: number): number;
+* toFloat(): number;
+* toDate(): Date;
+* toURL(base: string): string;
